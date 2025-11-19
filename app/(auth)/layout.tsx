@@ -19,11 +19,11 @@ export default function AuthLayout({children}: Readonly<{
                 <Link href="/" className="text-fuchsia-500 flex gap-2  items-center self-center font-medium">
                  <Image src="/logo.svg" alt="logo" width={32}  height={32} className=""></Image>
           
-                Daniel Gherasim SRL</Link>
+                Daniel Gherasim </Link>
           
             {children}
             <div className="text-balance text-center text-xs text-muted-foreground">
-                By clicking continue, you agrre with our <span className="hover:text-primary hover:underline">Terms of service</span> 
+                By clicking continue, you agree with our <span className="hover:text-primary hover:underline">Terms of service</span> 
                 and <span className="hover:text-primary hover:underline">Privacy Policy</span>
             </div>
         </div>
