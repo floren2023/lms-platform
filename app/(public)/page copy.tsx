@@ -67,11 +67,11 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-32">
+      <section className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-32">
         {features.map((feature, index) => (
           <Card
             key={index}
-            className=" hover:scale-105 border-none shadow-sm hover:shadow-lg shadow-violet-400  "
+            className=" hover:scale-105 border-none shadow-sm hover:shadow-lg shadow-violet-400"
           >
             <CardHeader>
               <CardTitle className="text-md text-purple-700 flex ">
@@ -79,9 +79,9 @@ export default function Home() {
                 {feature.title}
               </CardTitle>
             </CardHeader>
-            <div className="text-md  text-muted-foreground w-full pr-4 pl-6 mb-6 ">
+            <CardContent className="text-md text-muted-foreground justify-center text-center">
               {feature.description}
-            </div>
+            </CardContent>
           </Card>
         ))}
       </section>

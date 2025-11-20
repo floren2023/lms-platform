@@ -1,22 +1,13 @@
 import {
-  
   BookOpen,
-
   ChevronDownIcon,
   Home,
-  
   LayoutDashboardIcon,
   LogOutIcon,
-  
-  
-} from "lucide-react"
+} from "lucide-react";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -25,36 +16,21 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { authClient } from "@/lib/auth-client"
-import { toast } from "sonner"
+} from "@/components/ui/dropdown-menu";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-interface iAppProps{
-  name:string;
-  email:string;
-  image:string;
+import { useSignOut } from "@/hooks/use-signout";
+
+interface iAppProps {
+  name: string;
+  email: string;
+  image: string;
 }
 
-export default function UserMenu({name,email,image}:iAppProps) {
-  const router=useRouter()
-  
-   const SignOut=async()=>{
-    await authClient.signOut({
-  fetchOptions: {
-    onSuccess: () => {
-      router.push("/"); // redirect 
-      toast.success("You are successfully sign out")
-    },
-    onError:()=>{
-      toast.error("Failed to Sign Out")
-    }
-  },
-});
-
-   }
-
+export default function UserMenu({ name, email, image }: iAppProps) {
+  const router = useRouter();
+  const handleSignOut = useSignOut();
 
   return (
     <DropdownMenu>
@@ -83,29 +59,38 @@ export default function UserMenu({name,email,image}:iAppProps) {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem asChild>
-            <Link href="/"> <Home size={16} className="opacity-60" aria-hidden="true" />
-            <span>Home</span></Link>
-           
+            <Link href="/">
+              {" "}
+              <Home size={16} className="opacity-60" aria-hidden="true" />
+              <span>Home</span>
+            </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-            <Link href="/courses">  <BookOpen size={16} className="opacity-60" aria-hidden="true" />
-            <span>Courses</span></Link>
-          
+            <Link href="/courses">
+              {" "}
+              <BookOpen size={16} className="opacity-60" aria-hidden="true" />
+              <span>Courses</span>
+            </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem asChild><Link href="/dashboard">
-            <LayoutDashboardIcon size={16} className="opacity-60" aria-hidden="true" />
-            <span>Dashboard</span></Link>
-          
+          <DropdownMenuItem asChild>
+            <Link href="/dashboard">
+              <LayoutDashboardIcon
+                size={16}
+                className="opacity-60"
+                aria-hidden="true"
+              />
+              <span>Dashboard</span>
+            </Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-       
+
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={SignOut}>
+        <DropdownMenuItem onClick={handleSignOut}>
           <LogOutIcon size={16} className="opacity-60" aria-hidden="true" />
           <span>Logout</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

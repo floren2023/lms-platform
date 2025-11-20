@@ -16,7 +16,7 @@ const navigationItems=[
 const Navbar = () => {
 const {data:session,isPending}=authClient.useSession()
   return (
-    <header className='sticky top-0 z-50 w-full border-b bg-bakground/95 backdrop-blur-[background-filter]:bg-background/60'>
+    <header className='sticky top-0 z-50 w-full   shadow-sm dark:shadow-gray-700 bg-bakground/95 backdrop-blur-[background-filter]:bg-background/60'>
       <div className='flex container min-h-16 items-center mx-auto px-4 md:px-5 lg:px-8 justify-start '>
       
         <Link href="/" className="flex justify-start space-x-2 ml-4 items-center"> 
@@ -42,8 +42,7 @@ const {data:session,isPending}=authClient.useSession()
         Login</Link>
         </>
        )}
-       <Link href="/login" className={buttonVariants()}>
-        Get Started</Link>
+      
        </div>
       
       </div>
