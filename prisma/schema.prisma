@@ -9,9 +9,12 @@ generator client {
   output   = "../lib/generated/prisma"
 }
 
+
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url  	    = env("DATABASE_URL")
+  // uncomment next line if you use Prisma <5.10
+  // directUrl = env("DATABASE_URL_UNPOOLED")
 }
 
 model User {
@@ -24,6 +27,7 @@ model User {
   image         String?
   sessions      Session[]
   accounts      Account[]
+  courses       Course[]
 
   @@map("user")
 }
@@ -71,4 +75,36 @@ model Verification {
   updatedAt  DateTime @default(now()) @updatedAt
 
   @@map("verification")
+}
+
+model Course{
+  id          String @id @default(uuid())
+  title       String 
+  description String
+  fileKey     String
+  price       Int
+  duration    Int 
+  level       CourseLevel @default(Beginner)
+  category    String
+  smallDescription String
+  slug             String @unique
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  status          CourseStatus  @default(Drafts)
+  user             User?        @relation(fields:[userId], references:[id], onDelete:Cascade)
+  userId          String
+}               
+
+enum CourseLevel{
+  Beginner
+  Intermedi
+  Advanced
+
+}
+
+enum CourseStatus{
+  Drafts
+  Published
+  Archived
+
 }
