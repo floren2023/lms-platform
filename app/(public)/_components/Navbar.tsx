@@ -40,7 +40,8 @@ const {data:session,isPending}=authClient.useSession()
         name={ session?.user.name && session.user.name.length > 0
                       ? session?.user.name.charAt(0).toUpperCase()
                       : session?.user.email.charAt(0).toUpperCase()}
-        image={session.user.image!}/>
+        image={       session?.user.image ??
+                      `https://avatar.vercel.sh/${session?.user.email}`}/>
        ):(
         <>
         <Link href="/login" className={buttonVariants({variant:"secondary"})}>

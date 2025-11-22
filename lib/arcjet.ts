@@ -1,4 +1,5 @@
 //config file for arcjet
+import "server-only"
 import arcjet, {
     detectBot,
     fixedWindow,
