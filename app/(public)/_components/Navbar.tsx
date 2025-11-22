@@ -21,7 +21,7 @@ const {data:session,isPending}=authClient.useSession()
       
         <Link href="/" className="flex justify-start space-x-2 ml-4 items-center"> 
          <Image src="/logo.svg" alt="logo" width={32}  height={32}  className='text-violet-800'/>
-            <div className="font-bold text-violet-800">Daniel Gherasim </div>
+            <div className="font-bold text-violet-500">Daniel Gherasim </div>
         </Link>
        {/* <DESKTOP NAVIGATION */}
        <nav className='ml-10 sm:hidden md:flex md:flex-1 md:items-center md:justify-between '>
@@ -35,7 +35,12 @@ const {data:session,isPending}=authClient.useSession()
        </nav>
        <div className='flex items-center gap-4'><ThemeToggle/>
        {isPending?null:session?(
-       <UserMenu email={session.user.email} name={session.user.name} image={session.user.image!}/>
+       <UserMenu 
+       email={session.user.email}
+        name={ session?.user.name && session.user.name.length > 0
+                      ? session?.user.name.charAt(0).toUpperCase()
+                      : session?.user.email.charAt(0).toUpperCase()}
+        image={session.user.image!}/>
        ):(
         <>
         <Link href="/login" className={buttonVariants({variant:"secondary"})}>
